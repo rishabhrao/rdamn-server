@@ -1,0 +1,36 @@
+# Copyright (c) rishabhrao (https://github.com/rishabhrao)
+
+# Runs linter on the codebase and checks for type errors.
+
+name: Check
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository main branch
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Check types
+        run: npm run checkTypes
+
+      - name: Compile Typescript to Javascript
+        run: npm run build

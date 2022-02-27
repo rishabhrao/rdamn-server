@@ -1,0 +1,8 @@
+{
+	"ignore": ["./build"],
+	"env": {
+		"NODE_ENV": "development"
+	},
+	"exec": "npm run build && npm start",
+	"legacyWatch": true
+}

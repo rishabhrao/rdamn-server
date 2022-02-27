@@ -1,0 +1,38 @@
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "./tsconfig.json",
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": ["@typescript-eslint", "prettier"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended-requiring-type-checking",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended",
+		"prettier"
+	],
+	"rules": {
+		"@typescript-eslint/no-explicit-any": "error",
+		"@typescript-eslint/no-var-requires": "off",
+		"no-use-before-define": "off",
+		"@typescript-eslint/no-use-before-define": "error",
+		"no-duplicate-imports": "off",
+		"@typescript-eslint/no-duplicate-imports": "error",
+		"no-self-compare": "error",
+		"no-unmodified-loop-condition": "error",
+		"no-unreachable-loop": "error",
+		"require-atomic-updates": "error",
+		"block-scoped-var": "error",
+		"capitalized-comments": "error",
+		"eqeqeq": "error",
+		"dot-notation": "error",
+		"no-lonely-if": "error",
+		"no-extra-label": "error",
+		"no-alert": "error",
+		"no-console": "error"
+	}
+}

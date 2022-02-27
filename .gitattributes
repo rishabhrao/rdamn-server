@@ -1,0 +1,5 @@
+*.txt eol=lf
+*.ts eol=lf
+*.js eol=lf
+*.json eol=lf
+*.md eol=lf
