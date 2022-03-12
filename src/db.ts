@@ -2,6 +2,8 @@
 
 import Redis from "ioredis"
 
+import { REDIS_URL } from "./constants"
+
 /**
  * A redis db instance
  *
@@ -18,6 +20,6 @@ import Redis from "ioredis"
  * const myVal = await redis.get("key")
  * ```
  */
-export const redis: Redis.Redis = new Redis(process.env.REDIS_URL, {
+export const redis: Redis.Redis = new Redis(REDIS_URL, {
 	connectTimeout: 60000,
 })
