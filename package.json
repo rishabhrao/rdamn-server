@@ -12,7 +12,7 @@
 	"dependencies": {
 		"@types/ioredis": "^4.28.8",
 		"denamed": "^2.0.1",
-		"esbuild-node-tsc": "^1.8.3",
+		"esbuild-node-tsc": "^1.8.5",
 		"http-reverse-proxy-ts": "^1.0.1",
 		"ioredis": "^4.28.5"
 	},
@@ -22,7 +22,7 @@
 		"@typescript-eslint/parser": "^5.14.0",
 		"dotenv-cli": "^5.0.0",
 		"esbuild": "^0.14.25",
-		"eslint": "^8.10.0",
+		"eslint": "^8.11.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"import-sort-style-module": "^6.0.0",
