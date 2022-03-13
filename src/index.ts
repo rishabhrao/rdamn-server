@@ -5,7 +5,7 @@ import path from "path"
 import { createAAnswer, createConsoleLog, createResponse, startUdpServer, useCache, useFallback } from "denamed"
 import { HttpReverseProxy, Logger } from "http-reverse-proxy-ts"
 
-import { FALLBACK_A_RECORD_IP, HOST_IP, HOST_NAME, NODE_ENV, PROXY_HOST_NAME, SSL_CERT_FULLCHAIN, SSL_CERT_PRIVKEY } from "./constants"
+import { DNS_HOST_NAME, FALLBACK_A_RECORD_IP, NODE_ENV, PROXY_HOST_NAME, SSL_CERT_FULLCHAIN, SSL_CERT_PRIVKEY } from "./constants"
 import { redis } from "./db"
 
 const PreviewPort = 1337
@@ -37,14 +37,10 @@ startUdpServer(
 
 			const dnsQueryQuestion = dnsQueryQuestions[0]
 
-			if (dnsQueryQuestion.name.includes(PROXY_HOST_NAME)) {
-				return createResponse(dnsQuery, [createAAnswer(dnsQueryQuestion, NODE_ENV === "development" ? `127.0.0.1` : HOST_IP, 60)])
-			}
-
 			const slug = dnsQueryQuestion.name.split(".")[0]
 			const ip = await redis.get(slug)
 			if (ip) {
-				proxy.addRoute(`${slug}.${PROXY_HOST_NAME}`, `http://${slug}.${HOST_NAME}:${PreviewPort}`, {
+				proxy.addRoute(`${slug}.${PROXY_HOST_NAME}`, `http://${slug}.${DNS_HOST_NAME}:${PreviewPort}`, {
 					https: {
 						redirectToHttps: true,
 					},
@@ -57,7 +53,7 @@ startUdpServer(
 		}, FALLBACK_A_RECORD_IP),
 	),
 	{
-		log: createConsoleLog(),
+		log: NODE_ENV === "development" ? undefined : createConsoleLog(),
 		address: "::ffff:0.0.0.0",
 		port: NODE_ENV === "development" ? 12345 : 53,
 	},
